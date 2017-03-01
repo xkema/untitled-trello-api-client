@@ -22,15 +22,15 @@ class UtcUtils {
   /**
    * Get cards of a list
    * @param {string} cardId - 
-   * @param {string} startDate - 
-   * @param {string} endDate - 
+   * @param {number} lastNDays - 
    * @return {Promise} Promise object
    */
-  static getCardsOfList(cardId, startDate, endDate) {
-    if(isNaN(Date.parse(startDate)) || isNaN(Date.parse(endDate))) {
-      let now = Date.now();
-      startDate = new Date(now - 30*24*60*60*1000).toISOString();
-      endDate = new Date(now).toISOString();
+  static getCardsOfList(cardId, lastNDays) {
+    let now = Date.now(),
+        endDate = new Date(now).toISOString(),
+        startDate = new Date(now - 7*24*60*60*1000).toISOString(); // defaults to last week
+    if(!isNaN(lastNDays)) {
+      startDate = new Date(now - lastNDays*24*60*60*1000).toISOString();
     }
     return new Promise((resolve, reject) => {
       Trello.get(`lists/${cardId}/cards`, {

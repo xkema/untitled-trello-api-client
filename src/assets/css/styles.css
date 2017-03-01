@@ -15,12 +15,20 @@ button {
   text-align: right;
 }
 
+.utc-text-center {
+  text-align: center;
+}
+
 .utc-header {
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
 .utc-header h1 {
+  margin-bottom: 0;
+}
+
+.utc-header h1 + hr {
   margin-bottom: 0;
 }
 
@@ -31,6 +39,18 @@ button {
 
 .utc-auth-holder {
 
+}
+
+.utc-time-range-holder {
+  background-color: #fafafa;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.utc-time-range-holder input[type=radio] {
+  margin-bottom: 0;
 }
 
 .utc-table-holder td {
@@ -62,45 +82,3 @@ button {
   padding-top: 20px;
   padding-bottom: 20px; 
 }
-
-/*
-.utc-content {
-  padding: 20px 40px;
-}
-
-.utc-footer {
-  background-color: #343434;
-  padding: 10px 40px;
-  color: #898989;
-}
-*/
-
-/*.utc-logo {
-  max-width: 48px;
-}*/
-
-
-
-
-
-
-
-
-
-
-
-/* flex grid */
-/*
-.utc-flex-container {
-  display: flex;
-}
-.utc-flex-container.middles {
-  align-items: center;
-}
-.utc-flex-container.rows {
-  flex-direction: row;
-}
-.utc-flex-container.distributed {
-  justify-content: space-between;
-}
-*/

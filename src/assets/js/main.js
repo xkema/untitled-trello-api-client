@@ -5,12 +5,18 @@ let btnAuthorize = document.getElementById('utc-btn-authorize'),
     tableHolder = document.getElementById('utc-table'),
     btnReport = document.getElementById('utc-btn-create-report'),
     reportTextHolder = document.getElementById('utc-report-text'),
-    btnAddMeeting = document.getElementById('utc-btn-add-meeting');
+    btnAddMeeting = document.getElementById('utc-btn-add-meeting'),
+    radioTimeRange = document.querySelectorAll('input[name="utc-time-range"]');
 
 // promise objects
 let $a, // auth
     $u, // user
     $c; // cards
+
+// temp app state
+let $$state = {
+  userId: null
+};
 
 // init
 const initUtcApp = () => {
@@ -39,29 +45,47 @@ const initUtcApp = () => {
       }
     }
   });
+  // add time range changed listeners
+  radioTimeRange.forEach((radio) => {
+    radio.addEventListener('change', (event) => {
+      // send fetch cards request
+      fetchCardsOfList(parseInt(event.target.value), $$state.userId);
+    });
+  });
 }
 
 // app authorized
 const readyUtcApp = () => {
   // enable button, show loading info
   btnAuthorize.classList.add('utc-hidden');
-  tableHolder.innerHTML = 'updating table data..';
   // fetch user data
   $u = UtcUtils.getMe();
   $u.then((value) => {
-    let userId = value.id;
-    $c = UtcUtils.getCardsOfList('581c53dac5f591ba7be90d2c');
-    // fetch cards of list data
-    $c.then((value) => {
-      // user cards only
-      let userCardsOnly = UtcUtils.filterCardsOfuser(value, userId)
-      // sort cards by idShort
-      UtcUtils.sortCardsByIdShort(userCardsOnly);
-      // prepare cards table
-      tableHolder.innerHTML = UtcUtils.renderCardsTable(userCardsOnly);
-      // bind listeners to table elements
-      bindTableListeners();
-    }, badThingsHappen);
+    $$state.userId = value.id;
+    // get initially selected radio button
+    let initiallySelectedRadio = document.querySelector('input[name="utc-time-range"]:checked');
+    // send fetch cards request
+    fetchCardsOfList(parseInt(initiallySelectedRadio.value), $$state.userId);
+  }, badThingsHappen);
+}
+
+// send get cards request
+const fetchCardsOfList = (numDays, userId) => {
+  // replace table content with loading message
+  tableHolder.innerHTML = 'updating table data..';
+  // get cards
+  $c = UtcUtils.getCardsOfList('581c53dac5f591ba7be90d2c', parseInt(numDays));
+  // fetch cards of list data
+  $c.then((value) => {
+    // user cards only
+    let userCardsOnly = UtcUtils.filterCardsOfuser(value, userId)
+    // sort cards by idShort
+    UtcUtils.sortCardsByIdShort(userCardsOnly);
+    // prepare cards table
+    tableHolder.innerHTML = UtcUtils.renderCardsTable(userCardsOnly);
+    // todo :: unbind older events maybe?
+    // bind listeners to table elements
+    bindTableListeners();
   }, badThingsHappen);
 }
 
