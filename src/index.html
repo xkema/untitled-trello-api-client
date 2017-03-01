@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>untitled trello client</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../bower_components/skeleton/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../bower_components/skeleton/css/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <!-- webfonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&amp;subset=latin-ext" rel="stylesheet">
+</head>
+<body>
+
+  <!-- header -->
+  <header class="utc-header">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <h1>Untitled Trello App</h1>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- content -->
+  <main role="main">
+    <!-- auth holder -->
+    <div class="utc-auth-holder">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <button id="utc-btn-authorize" class="button button-primary utc-hidden">Authorize App</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table holder -->
+    <div class="utc-table-holder">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <div id="utc-table">
+              <!-- dynamic data goes here.. -->
+              &nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table toolbox -->
+    <div class="utc-table-toolbox">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns utc-text-right">
+            <button id="utc-btn-add-meeting" class="button">Add Meeting to Report</button>
+            <button id="utc-btn-create-report" class="button">Create Simple Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- report output -->
+    <div class="utc-outputs-holder">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <span id="utc-report-text"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- footer -->
+  <footer class="utc-footer">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <p>Bella Ciao!</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- trello client lib and jquery -->
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="https://api.trello.com/1/client.js?key=d726f5a15624a63df5f4c642144c459d"></script>
+  
+  <!-- main js -->
+  <script src="../dist/js/Utils.class.js"></script>
+  <script src="../dist/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "untitled-trello-api-client",
+  "description": "untitled-trello-api-client",
+  "main": "index.js",
+  "authors": [
+    "Kemal Yilmaz <kemalxyz@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "trello"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "skeleton-css#^2.0.4"
+  }
+}
