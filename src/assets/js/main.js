@@ -1,12 +1,12 @@
 // console.log('hola lola!');
 
 // get page elements
-let btnAuthorize = document.getElementById('utc-btn-authorize'),
-    tableHolder = document.getElementById('utc-table'),
-    btnReport = document.getElementById('utc-btn-create-report'),
-    reportTextHolder = document.getElementById('utc-report-text'),
-    btnAddMeeting = document.getElementById('utc-btn-add-meeting'),
-    radioTimeRange = document.querySelectorAll('input[name="utc-time-range"]');
+let btnReport        = document.getElementById('utc-btn-create-report'),
+    tableHolder      = document.getElementById('utc-table'),
+    btnAuthorize     = document.getElementById('utc-btn-authorize'),
+    btnAddMeeting    = document.getElementById('utc-btn-add-meeting'),
+    radioTimeRange   = document.querySelectorAll('input[name="utc-time-range"]'),
+    reportTextHolder = document.getElementById('utc-report-text');
 
 // promise objects
 let $a, // auth
@@ -93,9 +93,12 @@ const fetchCardsOfList = (numDays, userId) => {
 const badThingsHappen = (...args) => {
   if('undefined' === typeof args[0]) {
     console.log('ERROR GENERIC :: something bad happened, authorization failure maybe?');
-    btnAuthorize.classList.remove('utc-hidden');    
+    btnAuthorize.classList.remove('utc-hidden');
   } else {
     console.log(`ERROR :: status: ${args[0].status}, details: ${args[0].responseText}`);
+    if(401 === args[0].status) {
+      UtcUtils.deAuthorizeUserFromApp();
+    }
   }
 }
 

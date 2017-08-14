@@ -70,6 +70,13 @@ class UtcUtils {
   }
 
   /**
+   * de-authorizes application with Trello object
+   */
+  static deAuthorizeUserFromApp() {
+    Trello.deauthorize();
+  }
+
+  /**
    * Renders a cards table
    * @param {array} cards - List of cards
    * @return {string} HTML markup data table

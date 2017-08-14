@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp"
+    "start": "gulp",
+    "open": "open http://localhost:3003/src/index.html"
   },
   "keywords": [
     "trello"
